@@ -1,0 +1,182 @@
+<div>
+  <div>
+    <h1>
+      List of all visits
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new visit
+    </h2>
+
+    <form action="/insert_visit" method="post">
+      <div>
+        <label for="date_of_visit_box">
+          Date of visit
+        </label>
+
+        <input type="date" id="date_of_visit_box" name="query_date_of_visit">
+      </div>
+
+      <div>
+        <label for="patient_id_box">
+          Patient
+        </label>
+
+        <input type="text" id="patient_id_box" name="query_patient_id">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="medical_specialty_box">
+          Medical specialty
+        </label>
+
+        <input type="text" id="medical_specialty_box" name="query_medical_specialty">
+      </div>
+
+      <div>
+        <label for="transcription_box">
+          Transcription
+        </label>
+
+        <textarea id="transcription_box" name="query_transcription" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="keywords_box">
+          Keywords
+        </label>
+
+        <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="doctor_id_box">
+          Doctor
+        </label>
+
+        <input type="text" id="doctor_id_box" name="query_doctor_id">
+      </div>
+
+      <button>
+        Create visit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Date of visit
+        </th>
+
+        <th>
+          Patient
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Medical specialty
+        </th>
+
+        <th>
+          Transcription
+        </th>
+
+        <th>
+          Keywords
+        </th>
+
+        <th>
+          Doctor
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_visits.each do |a_visit| %>
+      <tr>
+        <td>
+          <%= a_visit.id %>
+        </td>
+
+        <td>
+          <%= a_visit.date_of_visit %>
+        </td>
+
+        <td>
+          <%= a_visit.patient_id %>
+        </td>
+
+        <td>
+          <%= a_visit.description %>
+        </td>
+
+        <td>
+          <%= a_visit.medical_specialty %>
+        </td>
+
+        <td>
+          <%= a_visit.transcription %>
+        </td>
+
+        <td>
+          <%= a_visit.keywords %>
+        </td>
+
+        <td>
+          <%= a_visit.doctor_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_visit.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_visit.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/visits/<%= a_visit.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

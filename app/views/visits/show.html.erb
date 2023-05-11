@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Visit #<%= @the_visit.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/visits">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_visit/<%= @the_visit.id %>">
+          Delete visit
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Date of visit
+      </dt>
+      <dd>
+        <%= @the_visit.date_of_visit %>
+      </dd>
+
+      <dt>
+        Patient
+      </dt>
+      <dd>
+        <%= @the_visit.patient_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_visit.description %>
+      </dd>
+
+      <dt>
+        Medical specialty
+      </dt>
+      <dd>
+        <%= @the_visit.medical_specialty %>
+      </dd>
+
+      <dt>
+        Transcription
+      </dt>
+      <dd>
+        <%= @the_visit.transcription %>
+      </dd>
+
+      <dt>
+        Keywords
+      </dt>
+      <dd>
+        <%= @the_visit.keywords %>
+      </dd>
+
+      <dt>
+        Doctor
+      </dt>
+      <dd>
+        <%= @the_visit.doctor_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_visit.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_visit.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit visit
+    </h2>
+
+    <form action="/modify_visit/<%= @the_visit.id %>"  method="post" >
+      <div>
+        <label for="date_of_visit_box">
+          Date of visit
+        </label>
+
+        <input type="date" id="date_of_visit_box" name="query_date_of_visit" value="<%= @the_visit.date_of_visit %>">
+      </div>
+
+      <div>
+        <label for="patient_id_box">
+          Patient
+        </label>
+
+        <input type="text" id="patient_id_box" name="query_patient_id" value="<%= @the_visit.patient_id %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_visit.description %></textarea>
+      </div>
+
+      <div>
+        <label for="medical_specialty_box">
+          Medical specialty
+        </label>
+
+        <input type="text" id="medical_specialty_box" name="query_medical_specialty" value="<%= @the_visit.medical_specialty %>">
+      </div>
+
+      <div>
+        <label for="transcription_box">
+          Transcription
+        </label>
+
+        <textarea id="transcription_box" name="query_transcription"><%= @the_visit.transcription %></textarea>
+      </div>
+
+      <div>
+        <label for="keywords_box">
+          Keywords
+        </label>
+
+        <textarea id="keywords_box" name="query_keywords"><%= @the_visit.keywords %></textarea>
+      </div>
+
+      <div>
+        <label for="doctor_id_box">
+          Doctor
+        </label>
+
+        <input type="text" id="doctor_id_box" name="query_doctor_id" value="<%= @the_visit.doctor_id %>">
+      </div>
+
+      <button>
+        Update visit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
