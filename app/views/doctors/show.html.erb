@@ -37,7 +37,7 @@
         Visits count
       </dt>
       <dd>
-        <%= @the_doctor.visits_count %>
+        Update Later
       </dd>
 
       <dt>
@@ -83,15 +83,7 @@
         <input type="text" id="last_name_box" name="query_last_name" value="<%= @the_doctor.last_name %>">
       </div>
 
-      <div>
-        <label for="visits_count_box">
-          Visits count
-        </label>
-
-        <input type="text" id="visits_count_box" name="query_visits_count" value="<%= @the_doctor.visits_count %>">
-      </div>
-
-      <button>
+      <button class="btn btn-primary">
         Update doctor
       </button>
     </form>

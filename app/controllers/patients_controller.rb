@@ -23,7 +23,6 @@ class PatientsController < ApplicationController
     the_patient.last_name = params.fetch("query_last_name")
     the_patient.dob = params.fetch("query_dob")
     the_patient.phone_number = params.fetch("query_phone_number")
-    the_patient.visits_count = params.fetch("query_visits_count")
 
     if the_patient.valid?
       the_patient.save
@@ -41,11 +40,10 @@ class PatientsController < ApplicationController
     the_patient.last_name = params.fetch("query_last_name")
     the_patient.dob = params.fetch("query_dob")
     the_patient.phone_number = params.fetch("query_phone_number")
-    the_patient.visits_count = params.fetch("query_visits_count")
 
     if the_patient.valid?
       the_patient.save
-      redirect_to("/patients/#{the_patient.id}", { :notice => "Patient updated successfully."} )
+      redirect_to("/patients/#{the_patient.id}", { :notice => "Patient updated successfully." })
     else
       redirect_to("/patients/#{the_patient.id}", { :alert => the_patient.errors.full_messages.to_sentence })
     end
@@ -57,6 +55,6 @@ class PatientsController < ApplicationController
 
     the_patient.destroy
 
-    redirect_to("/patients", { :notice => "Patient deleted successfully."} )
+    redirect_to("/patients", { :notice => "Patient deleted successfully." })
   end
 end

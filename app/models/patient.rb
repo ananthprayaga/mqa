@@ -7,7 +7,6 @@
 #  first_name   :string
 #  last_name    :string
 #  phone_number :string
-#  visits_count :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

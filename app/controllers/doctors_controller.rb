@@ -21,7 +21,6 @@ class DoctorsController < ApplicationController
     the_doctor = Doctor.new
     the_doctor.first_name = params.fetch("query_first_name")
     the_doctor.last_name = params.fetch("query_last_name")
-    the_doctor.visits_count = params.fetch("query_visits_count")
 
     if the_doctor.valid?
       the_doctor.save
@@ -37,11 +36,10 @@ class DoctorsController < ApplicationController
 
     the_doctor.first_name = params.fetch("query_first_name")
     the_doctor.last_name = params.fetch("query_last_name")
-    the_doctor.visits_count = params.fetch("query_visits_count")
 
     if the_doctor.valid?
       the_doctor.save
-      redirect_to("/doctors/#{the_doctor.id}", { :notice => "Doctor updated successfully."} )
+      redirect_to("/doctors/#{the_doctor.id}", { :notice => "Doctor updated successfully." })
     else
       redirect_to("/doctors/#{the_doctor.id}", { :alert => the_doctor.errors.full_messages.to_sentence })
     end
@@ -53,6 +51,6 @@ class DoctorsController < ApplicationController
 
     the_doctor.destroy
 
-    redirect_to("/doctors", { :notice => "Doctor deleted successfully."} )
+    redirect_to("/doctors", { :notice => "Doctor deleted successfully." })
   end
 end
