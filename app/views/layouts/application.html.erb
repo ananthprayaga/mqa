@@ -26,20 +26,24 @@
   </head>
 
   <body>
-    <% if @current_user != nil %>
-    <nav>
-        <li><a href="/user_sign_out">User Sign Out</a></li>
-        <li><a href="/patients">Patients</a></li>
-        <li><a href="/doctors">Doctors</a></li>
-        <li><a href="/visits">Visits</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <% if @current_user != nil %>
+        <nav>
+          <li><a href="/user_sign_out">User Sign Out</a></li>
+          <li><a href="/patients">Patients</a></li>
+          <li><a href="/doctors">Doctors</a></li>
+          <li><a href="/visits">Visits</a></li>
+        </ul>
+      </nav>
     <% end %>
-    <p style="color: green"><%= notice %></p>
-    <p style="color: red"><%= alert %></p>
+
+    <span class="bg-success text-white"><%= notice %></span>
+    <span class="bg-danger text-white"><%= alert %></span>
+
     <%= yield %>
     <footer class="position-fixed bottom-0 start-50 translate-middle-x">
       <p>Author: Ananth Prayaga</p>
     </footer>
-  </body>
+  </div>
+</body>
 </html>
