@@ -86,4 +86,8 @@ Rails.application.routes.draw do
 
   #------------------------------
 
+  # Routes for Question Answering Modules
+  get("/chat/:visit_id", { :controller => "visits", :action => "chat" })
+
+  get("/answer/:visit_id", { :controller => "visits", :action => "answer" })
 end
