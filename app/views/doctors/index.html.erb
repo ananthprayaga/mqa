@@ -1,7 +1,7 @@
 <div>
-  <div>
+  <div class="container text-center">
     <h1>
-      List of all doctors
+      Doctor List
     </h1>
   </div>
 </div>
@@ -72,36 +72,36 @@
       </tr>
 
       <% @list_of_doctors.each do |a_doctor| %>
-      <tr>
-        <td>
-          <%= a_doctor.id %>
-        </td>
+        <tr>
+          <td>
+            <%= a_doctor.id %>
+          </td>
 
-        <td>
-          <%= a_doctor.first_name %>
-        </td>
+          <td>
+            <%= a_doctor.first_name %>
+          </td>
 
-        <td>
-          <%= a_doctor.last_name %>
-        </td>
+          <td>
+            <%= a_doctor.last_name %>
+          </td>
 
-        <td>
-          Update LATER
-        </td>
+          <td>
+            Update LATER
+          </td>
 
-        <td>
-          <%= time_ago_in_words(a_doctor.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_doctor.updated_at) %> ago
-        </td>
+          <td>
+            <%= time_ago_in_words(a_doctor.created_at) %> ago
+          </td>
+          <td>
+            <%= time_ago_in_words(a_doctor.updated_at) %> ago
+          </td>
 
-        <td>
-          <a href="/doctors/<%= a_doctor.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
+          <td>
+            <a href="/doctors/<%= a_doctor.id %>">
+              Show details
+            </a>
+          </td>
+        </tr>
       <% end %>
     </table>
   </div>

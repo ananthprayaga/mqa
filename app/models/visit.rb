@@ -14,6 +14,6 @@
 #  patient_id        :integer
 #
 class Visit < ApplicationRecord
-  belongs_to(:patient, { :required => true, :class_name => "Patient", :foreign_key => "patient_id", :counter_cache => true })
-  belongs_to(:doctor, { :required => true, :class_name => "Doctor", :foreign_key => "doctor_id", :counter_cache => true })
+  belongs_to(:patient, { :required => true, :class_name => "Patient", :foreign_key => "patient_id" })
+  belongs_to(:doctor, { :required => true, :class_name => "Doctor", :foreign_key => "doctor_id" })
 end
