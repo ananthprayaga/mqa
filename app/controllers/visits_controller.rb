@@ -14,6 +14,30 @@ class VisitsController < ApplicationController
 
     @the_visit = matching_visits.at(0)
 
+    the_patient = @the_visit.patient
+
+    request_content = "#{@the_visit.description} The patient name is #{the_patient.first_name} #{the_patient.last_name}. The notes during the visit are: #{@the_visit.transcription}"
+
+    # Need to add this later into the Visit reason: #{@the_visit.sample}
+
+    openai_client = OpenAI::Client.new(
+      access_token: ENV.fetch("OPENAI_ACCESS_TOKEN"),
+      request_timeout: 240, # Optional parameter; increases the number of seconds before a request times out
+    )
+
+    response_three_five = openai_client.chat(
+      parameters: {
+        model: "gpt-3.5-turbo", # Required. I recommend using gpt-3.5-turbo while developing, because it's a LOT cheaper than gpt-4
+        messages: [
+          { role: "system", content: request_content },
+          { role: "user", content: "What is the patient suffering with?" },
+        ],
+        temperature: 0.1,
+      },
+    )
+
+    @message_response_threefive = response_three_five.fetch("choices").at(0).fetch("message").fetch("content")
+
     render({ :template => "visits/show.html.erb" })
   end
 
@@ -49,7 +73,7 @@ class VisitsController < ApplicationController
 
     if the_visit.valid?
       the_visit.save
-      redirect_to("/visits/#{the_visit.id}", { :notice => "Visit updated successfully."} )
+      redirect_to("/visits/#{the_visit.id}", { :notice => "Visit updated successfully." })
     else
       redirect_to("/visits/#{the_visit.id}", { :alert => the_visit.errors.full_messages.to_sentence })
     end
@@ -61,6 +85,6 @@ class VisitsController < ApplicationController
 
     the_visit.destroy
 
-    redirect_to("/visits", { :notice => "Visit deleted successfully."} )
+    redirect_to("/visits", { :notice => "Visit deleted successfully." })
   end
 end

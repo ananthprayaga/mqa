@@ -17,3 +17,5 @@ class Visit < ApplicationRecord
   belongs_to(:patient, { :required => true, :class_name => "Patient", :foreign_key => "patient_id" })
   belongs_to(:doctor, { :required => true, :class_name => "Doctor", :foreign_key => "doctor_id" })
 end
+
+# Need to add sample field later
