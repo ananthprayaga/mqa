@@ -7,132 +7,128 @@
     <title>Document</title>
   </head>
   <body>
-
-    <div>
+    <div class="container">
       <div class="container text-center">
         <h1>
           Patient List
         </h1>
       </div>
-    </div>
-
-    <hr>
-
-    <div>
+      <hr>
       <div>
-        <h2>
-          Add a new patient
-        </h2>
+        <div>
+          <h2>
+            Add a new patient
+          </h2>
 
-        <form class="form-inline" action="/insert_patient" method="post">
-          <div class="form-group mb-2">
-            <label for="first_name_box">
-              First name
-            </label>
+          <form class="form-inline" action="/insert_patient" method="post">
+            <div class="form-group mb-2">
+              <label for="first_name_box">
+                First name
+              </label>
 
-            <input type="text" id="first_name_box" name="query_first_name">
-          </div>
+              <input type="text" id="first_name_box" name="query_first_name">
+            </div>
 
-          <div class="form-group mb-2">
-            <label for="last_name_box">
-              Last name
-            </label>
+            <div class="form-group mb-2">
+              <label for="last_name_box">
+                Last name
+              </label>
 
-            <input type="text" id="last_name_box" name="query_last_name">
-          </div>
+              <input type="text" id="last_name_box" name="query_last_name">
+            </div>
 
-          <div class="form-group mb-2">
-            <label for="dob_box">
-              Dob
-            </label>
+            <div class="form-group mb-2">
+              <label for="dob_box">
+                Dob
+              </label>
 
-            <input type="date" id="dob_box" name="query_dob">
-          </div>
+              <input type="date" id="dob_box" name="query_dob">
+            </div>
 
-          <div class="form-group mb-2">
-            <label for="phone_number_box">
-              Phone number
-            </label>
+            <div class="form-group mb-2">
+              <label for="phone_number_box">
+                Phone number
+              </label>
 
-            <input type="text" id="phone_number_box" name="query_phone_number">
-          </div>
+              <input type="text" id="phone_number_box" name="query_phone_number">
+            </div>
 
-          <button class="btn btn-primary">
-            Create patient
-          </button>
-        </form>
+            <button class="btn btn-primary">
+              Create patient
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
 
-    <hr>
-    <div>
+      <hr>
       <div>
-        <table class="table table-bordered">
-          <tr>
-            <th>
-              ID
-            </th>
-
-            <th>
-              First name
-            </th>
-
-            <th>
-              Last name
-            </th>
-
-            <th>
-              Dob
-            </th>
-
-            <th>
-              Phone number
-            </th>
-
-            <th>
-              Visits count
-            </th>
-
-            <th>
-            </th>
-          </tr>
-
-          <% @list_of_patients.each do |a_patient| %>
+        <div>
+          <table class="table table-bordered">
             <tr>
-              <td>
-                <%= a_patient.id %>
-              </td>
+              <th>
+                ID
+              </th>
 
-              <td>
-                <%= a_patient.first_name %>
-              </td>
+              <th>
+                First name
+              </th>
 
-              <td>
-                <%= a_patient.last_name %>
-              </td>
+              <th>
+                Last name
+              </th>
 
-              <td>
-                <%= a_patient.dob %>
-              </td>
+              <th>
+                Dob
+              </th>
 
-              <td>
-                <%= a_patient.phone_number %>
-              </td>
+              <th>
+                Phone number
+              </th>
 
-              <td>
-                Update Later
-              </td>
+              <th>
+                Visits count
+              </th>
 
-              <td>
-                <a href="/patients/<%= a_patient.id %>">
-                  Show details
-                </a>
-              </td>
+              <th>
+              </th>
             </tr>
-          <% end %>
-        </table>
+
+            <% @list_of_patients.each do |a_patient| %>
+              <tr>
+                <td>
+                  <%= a_patient.id %>
+                </td>
+
+                <td>
+                  <%= a_patient.first_name %>
+                </td>
+
+                <td>
+                  <%= a_patient.last_name %>
+                </td>
+
+                <td>
+                  <%= a_patient.dob %>
+                </td>
+
+                <td>
+                  <%= a_patient.phone_number %>
+                </td>
+
+                <td>
+                  <%= a_patient.visits.size %>
+                </td>
+
+                <td>
+                  <a href="/patients/<%= a_patient.id %>">
+                    Show details
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
-
   </body>
 </html>

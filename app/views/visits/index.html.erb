@@ -7,183 +7,184 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
-      <div class="container text-center">
-        <h1>
-          List of all visits
-        </h1>
-      </div>
-    </div>
-
-    <hr>
-
-    <div>
+    <div class="container">
       <div>
-        <h2>
-          Add a new visit
-        </h2>
-
-        <form class="form-inline" action="/insert_visit" method="post">
-          <div class="form-group mb-2">
-            <label for="date_of_visit_box">
-              Date of visit
-            </label>
-
-            <input type="date" id="date_of_visit_box" name="query_date_of_visit">
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="patient_id_box">Patient</label>
-
-            <select type="text" id="patient_id_box" name="query_patient_id">
-              <% Patient.all.order(:first_name, :last_name).each do |patient| %>
-                <option value="<%= patient.id %>">
-                  <%= patient.first_name + " " + patient.last_name %>
-                </option>
-              <% end %>
-            </select>
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="description_box">
-              Description
-            </label>
-
-            <textarea id="description_box" name="query_description" rows="3"></textarea>
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="medical_specialty_box">
-              Medical specialty
-            </label>
-
-            <input type="text" id="medical_specialty_box" name="query_medical_specialty">
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="transcription_box">
-              Transcription
-            </label>
-
-            <textarea id="transcription_box" name="query_transcription" rows="3"></textarea>
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="keywords_box">
-              Keywords
-            </label>
-
-            <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
-          </div>
-
-          <div class="form-group mb-2">
-            <label for="doctor_id_box">
-              Doctor
-            </label>
-
-            <select type="text" id="doctor_id_box" name="query_doctor_id">
-              <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
-                <option value="<%= doctor.id %>">
-                  <%= doctor.first_name + " " + doctor.last_name %>
-                </option>
-              <% end %>
-            </select>
-          </div>
-
-          <button class="btn btn-primary">
-            Create visit
-          </button>
-        </form>
+        <div class="container text-center">
+          <h1>
+            List of all visits
+          </h1>
+        </div>
       </div>
-    </div>
 
-    <hr>
-    <div>
+      <hr>
+
       <div>
-        <table class="table table-bordered">
-          <tr>
-            <th>
-              ID
-            </th>
+        <div>
+          <h2>
+            Add a new visit
+          </h2>
 
-            <th>
-              Date of visit
-            </th>
+          <form class="form-inline" action="/insert_visit" method="post">
+            <div class="form-group mb-2">
+              <label for="date_of_visit_box">
+                Date of visit
+              </label>
 
-            <th>
-              Patient
-            </th>
+              <input type="date" id="date_of_visit_box" name="query_date_of_visit">
+            </div>
 
-            <th>
-              Description
-            </th>
+            <div class="form-group mb-2">
+              <label for="patient_id_box">Patient</label>
 
-            <th>
-              Medical specialty
-            </th>
+              <select type="text" id="patient_id_box" name="query_patient_id">
+                <% Patient.all.order(:first_name, :last_name).each do |patient| %>
+                  <option value="<%= patient.id %>">
+                    <%= patient.first_name + " " + patient.last_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
 
-            <th>
-              Transcription
-            </th>
+            <div class="form-group mb-2">
+              <label for="description_box">
+                Description
+              </label>
 
-            <th>
-              Keywords
-            </th>
+              <textarea id="description_box" name="query_description" rows="3"></textarea>
+            </div>
 
-            <th>
-              Doctor
-            </th>
+            <div class="form-group mb-2">
+              <label for="medical_specialty_box">
+                Medical specialty
+              </label>
 
-            <th>
-            </th>
-          </tr>
+              <input type="text" id="medical_specialty_box" name="query_medical_specialty">
+            </div>
 
-          <% @list_of_visits.each do |a_visit| %>
+            <div class="form-group mb-2">
+              <label for="transcription_box">
+                Transcription
+              </label>
+
+              <textarea id="transcription_box" name="query_transcription" rows="3"></textarea>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="keywords_box">
+                Keywords
+              </label>
+
+              <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
+            </div>
+
+            <div class="form-group mb-2">
+              <label for="doctor_id_box">
+                Doctor
+              </label>
+
+              <select type="text" id="doctor_id_box" name="query_doctor_id">
+                <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
+                  <option value="<%= doctor.id %>">
+                    <%= doctor.first_name + " " + doctor.last_name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+
+            <button class="btn btn-primary">
+              Create visit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <hr>
+      <div>
+        <div>
+          <table class="table table-bordered">
             <tr>
-              <td>
-                <%= a_visit.id %>
-              </td>
+              <th>
+                ID
+              </th>
 
-              <td>
-                <%= a_visit.date_of_visit %>
-              </td>
+              <th>
+                Date of visit
+              </th>
 
-              <td>
-                <%= a_visit.patient.first_name + " " + a_visit.patient.last_name %>
-              </td>
+              <th>
+                Patient
+              </th>
 
-              <td>
-                <%= a_visit.description %>
-              </td>
+              <th>
+                Description
+              </th>
 
-              <td>
-                <%= a_visit.medical_specialty %>
-              </td>
+              <th>
+                Medical specialty
+              </th>
 
-              <td>
-                <%= a_visit.transcription %>
-              </td>
+              <th>
+                Transcription
+              </th>
 
-              <td>
-                <%= a_visit.keywords %>
-              </td>
+              <th>
+                Keywords
+              </th>
 
-              <td>
-                <%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %>
-              </td>
+              <th>
+                Doctor
+              </th>
 
-              <td>
-                <a href="/visits/<%= a_visit.id %>">
-                  Show details
-                </a>
-              </td>
+              <th>
+              </th>
             </tr>
-          <% end %>
-        </table>
+
+            <% @list_of_visits.each do |a_visit| %>
+              <tr>
+                <td>
+                  <%= a_visit.id %>
+                </td>
+
+                <td>
+                  <%= a_visit.date_of_visit %>
+                </td>
+
+                <td>
+                  <%= a_visit.patient.first_name + " " + a_visit.patient.last_name %>
+                </td>
+
+                <td>
+                  <%= a_visit.description %>
+                </td>
+
+                <td>
+                  <%= a_visit.medical_specialty %>
+                </td>
+
+                <td>
+                  <%= a_visit.transcription %>
+                </td>
+
+                <td>
+                  <%= a_visit.keywords %>
+                </td>
+
+                <td>
+                  <%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %>
+                </td>
+
+                <td>
+                  <a href="/visits/<%= a_visit.id %>">
+                    Show details
+                  </a>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
+
+      <hr>
     </div>
-
-    <hr>
-
   </body>
 </html>
