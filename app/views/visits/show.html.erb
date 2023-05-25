@@ -49,14 +49,14 @@
               Patient
             </dt>
             <dd class="col-sm-11">
-              <%= @the_visit.patient.first_name + " " + @the_visit.patient.last_name %>
+              <a href="/patients/<%= @the_visit.patient_id %>"><%= @the_visit.patient.first_name + " " + @the_visit.patient.last_name %></a>
             </dd>
 
             <dt class="col-sm-1">
               Doctor
             </dt>
             <dd class="col-sm-11">
-              <%= @the_visit.doctor.first_name + " " + @the_visit.doctor.last_name %>
+              <a href="/doctors/<%= @the_visit.doctor_id %>"><%= @the_visit.doctor.first_name + " " + @the_visit.doctor.last_name %></a>
             </dd>
 
             <dt class="col-sm-1">

@@ -21,86 +21,175 @@
               </a>
             </div>
 
-            <div>
-              <a href="/delete_doctor/<%= @the_doctor.id %>">
-                <i class="fa-solid fa-trash"></i>
-              </a>
-            </div>
+            <div class="col-2">
+              <div class="col-2">
+                <span><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-doctor-modal"><i class="fa-solid fa-pen"></i></i></i></button></span>
+          </div>
+        </div>
+
+        <div>
+          <a href="/delete_doctor/<%= @the_doctor.id %>">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+        </div>
+      </div>
+
+      <dl class="row">
+        <dt class="col-sm-1">
+          First name
+        </dt>
+        <dd class="col-sm-11">
+          <%= @the_doctor.first_name %>
+        </dd>
+
+        <dt class="col-sm-1">
+          Last name
+        </dt>
+        <dd class="col-sm-11">
+          <%= @the_doctor.last_name %>
+        </dd>
+
+        <dt class="col-sm-1">
+          Visits count
+        </dt>
+        <dd class="col-sm-11">
+          <%= @the_doctor.visits.size %>
+        </dd>
+
+        <dt class="col-sm-1">
+          Created at
+        </dt>
+        <dd class="col-sm-11">
+          <%= time_ago_in_words(@the_doctor.created_at) %> ago
+        </dd>
+
+        <dt class="col-sm-1">
+          Updated at
+        </dt>
+        <dd class="col-sm-11">
+          <%= time_ago_in_words(@the_doctor.updated_at) %> ago
+        </dd>
+      </dl>
+    </div>
+  </div>
+
+  <hr>
+
+  <table class="table table-bordered table-striped caption-top mt-4">
+    <caption class="text-center">
+      <h1>
+        List of all visits
+      </h1>
+    </caption>
+    <tr>
+      <th>
+        ID
+      </th>
+
+      <th>
+        Date of visit
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Medical specialty
+      </th>
+
+      <th>
+        Transcription
+      </th>
+
+      <th>
+        Keywords
+      </th>
+
+      <th>
+        Patient
+      </th>
+
+      <th>
+      </th>
+    </tr>
+
+    <% @list_of_visits.each do |a_visit| %>
+      <tr>
+        <td>
+          <%= a_visit.id %>
+        </td>
+
+        <td>
+          <%= a_visit.date_of_visit %>
+        </td>
+
+        <td>
+          <%= a_visit.description %>
+        </td>
+
+        <td>
+          <%= a_visit.medical_specialty %>
+        </td>
+
+        <td>
+          <%= a_visit.transcription %>
+        </td>
+
+        <td>
+          <%= a_visit.keywords %>
+        </td>
+
+        <td>
+          <a href="/patients/<%= a_visit.patient_id %>"><%= a_visit.patient.first_name + " " + a_visit.patient.last_name %></a>
+        </td>
+
+        <td>
+          <a href="/visits/<%= a_visit.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <hr>
+
+  <div class="modal fade" id="edit-doctor-modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Doctor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form class="form container justify-content-center" action="/modify_doctor/<%= @the_doctor.id %>"  method="post" >
+          <div class="form-group my-2 col">
+            <label for="first_name_box">
+              First name
+            </label>
+
+            <input type="text" id="first_name_box" name="query_first_name" value="<%= @the_doctor.first_name %>">
           </div>
 
-          <dl class="row">
-            <dt class="col-sm-1">
-              First name
-            </dt>
-            <dd class="col-sm-11">
-              <%= @the_doctor.first_name %>
-            </dd>
-
-            <dt class="col-sm-1">
+          <div class="form-group mb-2">
+            <label for="last_name_box">
               Last name
-            </dt>
-            <dd class="col-sm-11">
-              <%= @the_doctor.last_name %>
-            </dd>
+            </label>
 
-            <dt class="col-sm-1">
-              Visits count
-            </dt>
-            <dd class="col-sm-11">
-              <%= @the_doctor.visits.size %>
-            </dd>
+            <input type="text" id="last_name_box" name="query_last_name" value="<%= @the_doctor.last_name %>">
+          </div>
 
-            <dt class="col-sm-1">
-              Created at
-            </dt>
-            <dd class="col-sm-11">
-              <%= time_ago_in_words(@the_doctor.created_at) %> ago
-            </dd>
-
-            <dt class="col-sm-1">
-              Updated at
-            </dt>
-            <dd class="col-sm-11">
-              <%= time_ago_in_words(@the_doctor.updated_at) %> ago
-            </dd>
-          </dl>
-        </div>
+          <button class="btn btn-primary mb-2">
+            Update doctor
+          </button>
+        </form>
       </div>
-
-      <hr>
-
-      <div>
-        <div>
-          <h2>
-            Edit doctor
-          </h2>
-
-          <form class="form container justify-content-center" action="/modify_doctor/<%= @the_doctor.id %>"  method="post" >
-            <div class="form-group mb-2 col">
-              <label for="first_name_box">
-                First name
-              </label>
-
-              <input type="text" id="first_name_box" name="query_first_name" value="<%= @the_doctor.first_name %>">
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="last_name_box">
-                Last name
-              </label>
-
-              <input type="text" id="last_name_box" name="query_last_name" value="<%= @the_doctor.last_name %>">
-            </div>
-
-            <button class="btn btn-primary">
-              Update doctor
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <hr>
-
     </div>
-  </body>
+  </div>
+</div>
+
+<hr>
+
+</div>
+</body>
 </html>

@@ -14,6 +14,10 @@ class DoctorsController < ApplicationController
 
     @the_doctor = matching_doctors.at(0)
 
+    doctor_id = @the_doctor.id
+
+    @list_of_visits = Visit.all.where({ :doctor_id => doctor_id })
+
     render({ :template => "doctors/show.html.erb" })
   end
 

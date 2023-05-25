@@ -63,7 +63,7 @@
               </td>
 
               <td>
-                <%= a_visit.patient.first_name + " " + a_visit.patient.last_name %>
+                <a href="/patients/<%= a_visit.patient_id %>"><%= a_visit.patient.first_name + " " + a_visit.patient.last_name %></a>
               </td>
 
               <td>
@@ -83,7 +83,7 @@
               </td>
 
               <td>
-                <%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %>
+                <a href="/doctors/<%= a_visit.doctor_id %>"><%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %></a>
               </td>
 
               <td>
