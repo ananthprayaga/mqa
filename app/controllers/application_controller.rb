@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if @current_user == nil
       render({ :template => "layouts/index.html.erb" })
     else
-      redirect_to("/visits", { :notice => "User sucessfully signed in!" })
+      redirect_to("/patients", { :notice => "User sucessfully signed in!" })
     end
   end
 end

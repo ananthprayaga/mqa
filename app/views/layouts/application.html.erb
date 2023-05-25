@@ -30,7 +30,7 @@
       <% if @current_user != nil %>
         <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #800000;">
           <div class="container-fluid">
-            <a class="navbar-brand abs text-white" href="/"><i class="fa-solid fa-message fa-xl m-auto" style="color: #ffffff;"></i> MAI</a>
+            <a class="navbar-brand abs text-white" href="/patients"><i class="fa-solid fa-message fa l m-auto" style="color: #ffffff;"></i> MQA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,10 +41,15 @@
                 <li><a class="nav-link text-white" href="/visits">Visits</a></li>
               </ul>
               <div class="navbar-nav ms-auto">
-                <a class="nav-link text-white" href="/user_sign_out">Sign Out</a>
+                <a class="nav-link text-white" href="/user_sign_out">Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
               </div>
             </div>
           </div>
+        </nav>
+      <%else %>
+        <nav class="navbar navbar-light bg-light justify-content-center">
+          <i class="fa-solid fa-message fa-2xl me-3" style="color: #800000;"></i>
+          <h1 class="text-center fs-2 text" style="color:#800000;">Medical Question Answering</h1>
         </nav>
       <% end %>
     </div>
@@ -63,5 +68,10 @@
       <%end%>
     </div>
     <%= yield %>
+    <footer>
+      <div class="fixed-bottom text-center bg-light p-2">
+        <span> Ananth Prayaga, Made with <i class="fa-solid fa-heart" style="color: #ba2121;"></i></span>
+      </div>
+    </footer>
   </body>
 </html>

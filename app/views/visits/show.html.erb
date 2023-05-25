@@ -49,7 +49,14 @@
               Patient
             </dt>
             <dd class="col-sm-11">
-              <%= @the_visit.patient_id %>
+              <%= @the_visit.patient.first_name + " " + @the_visit.patient.last_name %>
+            </dd>
+
+            <dt class="col-sm-1">
+              Doctor
+            </dt>
+            <dd class="col-sm-11">
+              <%= @the_visit.doctor.first_name + " " + @the_visit.doctor.last_name %>
             </dd>
 
             <dt class="col-sm-1">
@@ -78,13 +85,6 @@
             </dt>
             <dd class="col-sm-11">
               <%= @the_visit.keywords %>
-            </dd>
-
-            <dt class="col-sm-1">
-              Doctor
-            </dt>
-            <dd class="col-sm-11">
-              <%= @the_visit.doctor_id %>
             </dd>
 
             <dt class="col-sm-1">
@@ -120,6 +120,7 @@
                 </label>
 
                 <select type="text" id="doctor_id_box" name="query_doctor_id">
+                  <option value="<%= @the_visit.doctor_id %>" selected><%= @the_visit.doctor.first_name + " " + @the_visit.doctor.last_name %></option>
                   <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
                     <option value="<%= doctor.id %>">
                       <%= doctor.first_name + " " + doctor.last_name %>
@@ -130,8 +131,8 @@
 
               <div class="form-group mb-2 col-3">
                 <label for="patient_id_box">Patient</label>
-
                 <select type="text" id="patient_id_box" name="query_patient_id">
+                  <option value="<%= @the_visit.patient_id %>" selected><%= @the_visit.patient.first_name + " " + @the_visit.patient.last_name %></option>
                   <% Patient.all.order(:first_name, :last_name).each do |patient| %>
                     <option value="<%= patient.id %>">
                       <%= patient.first_name + " " + patient.last_name %>
@@ -146,7 +147,7 @@
                   Description
                 </label>
 
-                <textarea id="description_box" name="query_description" rows="3"></textarea>
+                <textarea id="description_box" name="query_description" rows="3"><%= @the_visit.description %></textarea>
               </div>
 
               <div class="form-group mb-2 col-3">
@@ -154,7 +155,7 @@
                   Keywords
                 </label>
 
-                <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
+                <textarea id="keywords_box" name="query_keywords" rows="3"><%= @the_visit.keywords %></textarea>
               </div>
             </div>
             <div class="row">
@@ -163,7 +164,7 @@
                   Transcription
                 </label>
                 <br>
-                <textarea id="transcription_box" name="query_transcription" rows="3" cols="50"></textarea>
+                <textarea id="transcription_box" name="query_transcription" rows="3" cols="50"><%= @the_visit.transcription %></textarea>
               </div>
             </div>
 
@@ -173,14 +174,14 @@
                   Medical specialty
                 </label>
 
-                <input type="text" id="medical_specialty_box" name="query_medical_specialty">
+                <input type="text" id="medical_specialty_box" name="query_medical_specialty" value="<%= @the_visit.medical_specialty %>">
               </div>
               <div class="form-group mb-2 col-3">
                 <label for="date_of_visit_box">
                   Date of visit
                 </label>
 
-                <input type="date" id="date_of_visit_box" name="query_date_of_visit">
+                <input type="date" id="date_of_visit_box" name="query_date_of_visit" value="<%= @the_visit.date_of_visit %>">
               </div>
             </div>
 

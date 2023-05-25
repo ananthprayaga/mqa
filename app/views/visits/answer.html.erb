@@ -57,7 +57,7 @@
         <% unless @list_of_questions.blank? %>
           <div class="questions container-fluid pt-5">
             <h5 class="text-center">Previous Questions & Answers</h5>
-            <% @list_of_questions.each_with_index do |question| %>
+            <% @list_of_questions.each_with_index do |question, index| %>
               <div class="container-fluid fw-medium">Question <%= index + 1 %>: <span class="fw-light"><%= question.question%></span></div>
               <div class="container-fluid fw-medium mb-2">Answer <%= index + 1 %>: <span class="fw-light"><%= question.answer%></span></div>
             <% end %>
