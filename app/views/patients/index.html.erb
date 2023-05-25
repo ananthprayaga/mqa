@@ -8,62 +8,14 @@
   </head>
   <body>
     <div class="container">
-      <div class="container text-center">
-        <h1>
-          Patient List
-        </h1>
-      </div>
-      <hr>
       <div>
         <div>
-          <h2>
-            Add a new patient
-          </h2>
-
-          <form class="form-inline" action="/insert_patient" method="post">
-            <div class="form-group mb-2">
-              <label for="first_name_box">
-                First name
-              </label>
-
-              <input type="text" id="first_name_box" name="query_first_name">
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="last_name_box">
-                Last name
-              </label>
-
-              <input type="text" id="last_name_box" name="query_last_name">
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="dob_box">
-                Dob
-              </label>
-
-              <input type="date" id="dob_box" name="query_dob">
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="phone_number_box">
-                Phone number
-              </label>
-
-              <input type="text" id="phone_number_box" name="query_phone_number">
-            </div>
-
-            <button class="btn btn-primary">
-              Create patient
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <hr>
-      <div>
-        <div>
-          <table class="table table-bordered">
+          <table class="table table-bordered table-striped caption-top mt-4">
+            <caption class="text-center">
+              <h1>
+                Patient List <span><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-patient-modal"><i class="fa-solid fa-user-plus"></i></button></span>
+              </h1>
+            </caption>
             <tr>
               <th>
                 ID
@@ -127,6 +79,60 @@
               </tr>
             <% end %>
           </table>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="modal fade" id="new-patient-modal" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Add New Patient</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form class="form container justify-content-center" action="/insert_patient" method="post">
+                  <div class="row">
+                    <div class="form-group mb-2 col">
+                      <label for="first_name_box">
+                        First name
+                      </label>
+
+                      <input type="text" id="first_name_box" name="query_first_name">
+                    </div>
+
+                    <div class="form-group mb-2 col">
+                      <label for="last_name_box">
+                        Last name
+                      </label>
+
+                      <input type="text" id="last_name_box" name="query_last_name">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group mb-2 col">
+                      <label for="dob_box">
+                        Date of Birth
+                      </label>
+
+                      <input type="date" id="dob_box" name="query_dob">
+                    </div>
+
+                    <div class="form-group mb-2 col">
+                      <label for="phone_number_box">
+                        Phone number
+                      </label>
+
+                      <input type="text" id="phone_number_box" name="query_phone_number">
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary mb-2">
+                    Create patient
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

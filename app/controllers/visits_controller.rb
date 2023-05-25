@@ -68,6 +68,8 @@ class VisitsController < ApplicationController
     current_visit_id = params.fetch("visit_id")
     @the_visit = Visit.where({ :id => current_visit_id }).at(0)
     @the_patient = Patient.where({ :id => @the_visit.patient_id }).at(0)
+    @list_of_questions = Qa.all.where({ :visit_id => current_visit_id })
+
     render({ :template => "visits/chat.html.erb" })
   end
 
@@ -101,6 +103,15 @@ class VisitsController < ApplicationController
     )
 
     @message_response_threefive = response_three_five.fetch("choices").at(0).fetch("message").fetch("content")
+
+    new_qa = Qa.new
+    new_qa.question = @question
+    new_qa.answer = @message_response_threefive
+    new_qa.visit_id = current_visit_id
+    new_qa.save
+
+    @list_of_questions = Qa.all.where({ :visit_id => current_visit_id })
+
     render({ :template => "visits/answer.html.erb" })
   end
 end

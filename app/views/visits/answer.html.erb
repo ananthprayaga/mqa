@@ -42,7 +42,7 @@
           <p><%= @the_visit.transcription%></p>
         </div>
         <div class="container-fluid fw-medium">Question: <span class="fw-light"><%= @question%></span></div>
-        <div class="container-fluid fw-medium">Answer GPT-3.5_Turbo: <span class="fw-light"><%=@message_response_threefive%></span></div>
+        <div class="container-fluid fw-medium">Answer: <span class="fw-light"><%=@message_response_threefive%></span></div>
         <br>
 
         <div class="qa-section container-fluid">
@@ -53,6 +53,17 @@
             <button class="btn btn-primary float-end">Ask</button>
           </form>
         </div>
+
+        <% unless @list_of_questions.blank? %>
+          <div class="questions container-fluid pt-5">
+            <h5 class="text-center">Previous Questions & Answers</h5>
+            <% @list_of_questions.each_with_index do |question| %>
+              <div class="container-fluid fw-medium">Question <%= index + 1 %>: <span class="fw-light"><%= question.question%></span></div>
+              <div class="container-fluid fw-medium mb-2">Answer <%= index + 1 %>: <span class="fw-light"><%= question.answer%></span></div>
+            <% end %>
+          </div>
+        <% end %>
+
       </div>
     </body>
   </html>

@@ -9,115 +9,106 @@
   <body>
     <div class="container">
       <div>
-        <div class="container text-center">
-          <h1>
-            Doctor List
-          </h1>
-        </div>
-      </div>
+        <table class="table table-bordered table-striped caption-top mt-4">
+          <caption class="text-center">
+            <h1>Doctor List <span><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-doctor-modal"><i class="fa-solid fa-user-plus"></i></button></span></h1>
+          </caption>
+          <tr>
+            <th>
+              ID
+            </th>
 
-      <hr>
+            <th>
+              First name
+            </th>
 
-      <div>
-        <div>
-          <h2>
-            Add a new doctor
-          </h2>
+            <th>
+              Last name
+            </th>
 
-          <form action="/insert_doctor" method="post">
-            <div class="form-group mb-2">
-              <label for="first_name_box">
-                First name
-              </label>
+            <th>
+              Visits count
+            </th>
 
-              <input type="text" id="first_name_box" name="query_first_name">
-            </div>
+            <th>
+              Created at
+            </th>
 
-            <div class="form-group mb-2">
-              <label for="last_name_box">
-                Last name
-              </label>
+            <th>
+              Updated at
+            </th>
 
-              <input type="text" id="last_name_box" name="query_last_name">
-            </div>
+            <th>
+            </th>
+          </tr>
 
-            <button class="btn btn-primary">
-              Create doctor
-            </button>
-          </form>
-        </div>
-      </div>
+          <% @list_of_doctors.each do |a_doctor| %>
+            <tr style="">
+              <td>
+                <%= a_doctor.id %>
+              </td>
 
-      <hr>
-      <div>
-        <div>
-          <table class="table table-bordered">
-            <tr>
-              <th>
-                ID
-              </th>
+              <td>
+                <%= a_doctor.first_name %>
+              </td>
+              <td>
+                <%= a_doctor.last_name %>
+              </td>
 
-              <th>
-                First name
-              </th>
+              <td>
+                <%= a_doctor.visits.size %>
+              </td>
 
-              <th>
-                Last name
-              </th>
+              <td>
+                <%= time_ago_in_words(a_doctor.created_at) %> ago
+              </td>
+              <td>
+                <%= time_ago_in_words(a_doctor.updated_at) %> ago
+              </td>
 
-              <th>
-                Visits count
-              </th>
-
-              <th>
-                Created at
-              </th>
-
-              <th>
-                Updated at
-              </th>
-
-              <th>
-              </th>
+              <td>
+                <a href="/doctors/<%= a_doctor.id %>">
+                  Show details
+                </a>
+              </td>
             </tr>
+          <% end %>
+        </table>
+      </div>
+      <div>
+        <div class="modal fade" id="new-doctor-modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add New Doctor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <form class="form container justify-content-center" action="/insert_doctor" method="post">
+                <div class="row">
+                  <div class="form-group mb-2 col">
+                    <label for="first_name_box">
+                      First name
+                    </label>
 
-            <% @list_of_doctors.each do |a_doctor| %>
-              <tr>
-                <td>
-                  <%= a_doctor.id %>
-                </td>
+                    <input type="text" id="first_name_box" name="query_first_name">
+                  </div>
 
-                <td>
-                  <%= a_doctor.first_name %>
-                </td>
+                  <div class="form-group mb-2 col">
+                    <label for="last_name_box">
+                      Last name
+                    </label>
 
-                <td>
-                  <%= a_doctor.last_name %>
-                </td>
-
-                <td>
-                  <%= a_doctor.visits.size %>
-                </td>
-
-                <td>
-                  <%= time_ago_in_words(a_doctor.created_at) %> ago
-                </td>
-                <td>
-                  <%= time_ago_in_words(a_doctor.updated_at) %> ago
-                </td>
-
-                <td>
-                  <a href="/doctors/<%= a_doctor.id %>">
-                    Show details
-                  </a>
-                </td>
-              </tr>
-            <% end %>
-          </table>
+                    <input type="text" id="last_name_box" name="query_last_name">
+                  </div>
+                </div>
+                <button class="btn btn-primary mb-2">
+                  Create doctor
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-
-      <hr>
     </div>
   </body>
 </html>

@@ -9,182 +9,182 @@
   <body>
     <div class="container">
       <div>
-        <div class="container text-center">
-          <h1>
-            List of all visits
-          </h1>
-        </div>
-      </div>
+        <table class="table table-bordered table-striped caption-top mt-4">
+          <caption class="text-center">
+            <h1>
+              List of all visits <span><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new-visit-modal"><i class="fa-solid fa-plus"></i></button></span>
+            </h1>
+          </caption>
+          <tr>
+            <th>
+              ID
+            </th>
 
-      <hr>
+            <th>
+              Date of visit
+            </th>
 
-      <div>
-        <div>
-          <h2>
-            Add a new visit
-          </h2>
+            <th>
+              Patient
+            </th>
 
-          <form class="form-inline" action="/insert_visit" method="post">
-            <div class="form-group mb-2">
-              <label for="date_of_visit_box">
-                Date of visit
-              </label>
+            <th>
+              Description
+            </th>
 
-              <input type="date" id="date_of_visit_box" name="query_date_of_visit">
-            </div>
+            <th>
+              Medical specialty
+            </th>
 
-            <div class="form-group mb-2">
-              <label for="patient_id_box">Patient</label>
+            <th>
+              Transcription
+            </th>
 
-              <select type="text" id="patient_id_box" name="query_patient_id">
-                <% Patient.all.order(:first_name, :last_name).each do |patient| %>
-                  <option value="<%= patient.id %>">
-                    <%= patient.first_name + " " + patient.last_name %>
-                  </option>
-                <% end %>
-              </select>
-            </div>
+            <th>
+              Keywords
+            </th>
 
-            <div class="form-group mb-2">
-              <label for="description_box">
-                Description
-              </label>
+            <th>
+              Doctor
+            </th>
 
-              <textarea id="description_box" name="query_description" rows="3"></textarea>
-            </div>
+            <th>
+            </th>
+          </tr>
 
-            <div class="form-group mb-2">
-              <label for="medical_specialty_box">
-                Medical specialty
-              </label>
-
-              <input type="text" id="medical_specialty_box" name="query_medical_specialty">
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="transcription_box">
-                Transcription
-              </label>
-
-              <textarea id="transcription_box" name="query_transcription" rows="3"></textarea>
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="keywords_box">
-                Keywords
-              </label>
-
-              <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
-            </div>
-
-            <div class="form-group mb-2">
-              <label for="doctor_id_box">
-                Doctor
-              </label>
-
-              <select type="text" id="doctor_id_box" name="query_doctor_id">
-                <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
-                  <option value="<%= doctor.id %>">
-                    <%= doctor.first_name + " " + doctor.last_name %>
-                  </option>
-                <% end %>
-              </select>
-            </div>
-
-            <button class="btn btn-primary">
-              Create visit
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <hr>
-      <div>
-        <div>
-          <table class="table table-bordered">
+          <% @list_of_visits.each do |a_visit| %>
             <tr>
-              <th>
-                ID
-              </th>
+              <td>
+                <%= a_visit.id %>
+              </td>
 
-              <th>
-                Date of visit
-              </th>
+              <td>
+                <%= a_visit.date_of_visit %>
+              </td>
 
-              <th>
-                Patient
-              </th>
+              <td>
+                <%= a_visit.patient.first_name + " " + a_visit.patient.last_name %>
+              </td>
 
-              <th>
-                Description
-              </th>
+              <td>
+                <%= a_visit.description %>
+              </td>
 
-              <th>
-                Medical specialty
-              </th>
+              <td>
+                <%= a_visit.medical_specialty %>
+              </td>
 
-              <th>
-                Transcription
-              </th>
+              <td>
+                <%= a_visit.transcription %>
+              </td>
 
-              <th>
-                Keywords
-              </th>
+              <td>
+                <%= a_visit.keywords %>
+              </td>
 
-              <th>
-                Doctor
-              </th>
+              <td>
+                <%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %>
+              </td>
 
-              <th>
-              </th>
+              <td>
+                <a href="/visits/<%= a_visit.id %>">
+                  Show details
+                </a>
+              </td>
             </tr>
+          <% end %>
+        </table>
+      </div>
+      <div>
+        <div class="modal fade" id="new-visit-modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Add New Visit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <form class="form container justify-content-center" action="/insert_visit" method="post">
+                <div class="row mt-2">
+                  <div class="form-group mb-2 col">
+                    <label for="doctor_id_box">
+                      Doctor
+                    </label>
 
-            <% @list_of_visits.each do |a_visit| %>
-              <tr>
-                <td>
-                  <%= a_visit.id %>
-                </td>
+                    <select type="text" id="doctor_id_box" name="query_doctor_id">
+                      <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
+                        <option value="<%= doctor.id %>">
+                          <%= doctor.first_name + " " + doctor.last_name %>
+                        </option>
+                      <% end %>
+                    </select>
+                  </div>
 
-                <td>
-                  <%= a_visit.date_of_visit %>
-                </td>
+                  <div class="form-group mb-2 col">
+                    <label for="patient_id_box">Patient</label>
 
-                <td>
-                  <%= a_visit.patient.first_name + " " + a_visit.patient.last_name %>
-                </td>
+                    <select type="text" id="patient_id_box" name="query_patient_id">
+                      <% Patient.all.order(:first_name, :last_name).each do |patient| %>
+                        <option value="<%= patient.id %>">
+                          <%= patient.first_name + " " + patient.last_name %>
+                        </option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-2 col">
+                    <label for="description_box">
+                      Description
+                    </label>
 
-                <td>
-                  <%= a_visit.description %>
-                </td>
+                    <textarea id="description_box" name="query_description" rows="3"></textarea>
+                  </div>
 
-                <td>
-                  <%= a_visit.medical_specialty %>
-                </td>
+                  <div class="form-group mb-2 col">
+                    <label for="keywords_box">
+                      Keywords
+                    </label>
 
-                <td>
-                  <%= a_visit.transcription %>
-                </td>
+                    <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-2">
+                    <label for="transcription_box">
+                      Transcription
+                    </label>
+                    <br>
+                    <textarea id="transcription_box" name="query_transcription" rows="3" cols="50"></textarea>
+                  </div>
+                </div>
 
-                <td>
-                  <%= a_visit.keywords %>
-                </td>
+                <div class="row">
+                  <div class="form-group mb-2 col">
+                    <label for="medical_specialty_box">
+                      Medical specialty
+                    </label>
 
-                <td>
-                  <%= "Dr. " + a_visit.doctor.first_name + " " + a_visit.doctor.last_name %>
-                </td>
+                    <input type="text" id="medical_specialty_box" name="query_medical_specialty">
+                  </div>
+                  <div class="form-group mb-2 col">
+                    <label for="date_of_visit_box">
+                      Date of visit
+                    </label>
 
-                <td>
-                  <a href="/visits/<%= a_visit.id %>">
-                    Show details
-                  </a>
-                </td>
-              </tr>
-            <% end %>
-          </table>
+                    <input type="date" id="date_of_visit_box" name="query_date_of_visit">
+                  </div>
+                </div>
+
+                <button class="btn btn-primary mb-2">
+                  Create visit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-
-      <hr>
     </div>
-  </body>
+  </div>
+
+</body>
 </html>

@@ -28,26 +28,40 @@
   <body>
     <div>
       <% if @current_user != nil %>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #800000;">
+        <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #800000;">
           <div class="container-fluid">
+            <a class="navbar-brand abs text-white" href="/"><i class="fa-solid fa-message fa-xl m-auto" style="color: #ffffff;"></i> MAI</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNavAltMarkup">
+            <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
               <ul class="navbar-nav">
-                <i class="fa-solid fa-message fa-2xl m-auto" style="color: #ffffff;"></i>
-                <li class="nav-item"><a class="nav-link text-white" href="/patients">Patients</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/doctors">Doctors</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/visits">Visits</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/user_sign_out">User Sign Out</a></li>
+                <li><a class="nav-link text-white" href="/patients">Patients</a></li>
+                <li><a class="nav-link text-white" href="/doctors">Doctors</a></li>
+                <li><a class="nav-link text-white" href="/visits">Visits</a></li>
               </ul>
+              <div class="navbar-nav ms-auto">
+                <a class="nav-link text-white" href="/user_sign_out">Sign Out</a>
+              </div>
             </div>
           </div>
         </nav>
       <% end %>
     </div>
-    <span class="bg-success text-white"><%= notice %></span>
-    <span class="bg-danger text-white"><%= alert %></span>
+    <div class="container">
+      <% unless notice.nil? %>
+        <div class="alert alert-success d-inline-flex alert-dismissible fade show m-1" role="alert">
+          <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end%>
+      <% unless alert.nil? %>
+        <div class="alert alert-danger d-inline-flex alert-dismissible fade show m-1" role="alert">
+          <%= alert %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <%end%>
+    </div>
     <%= yield %>
   </body>
 </html>

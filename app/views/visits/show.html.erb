@@ -14,81 +14,90 @@
             Visit #<%= @the_visit.id %> details
           </h1>
 
-          <div>
-            <div>
+          <div class="d-flex justify-content-start">
+            <div class="col-2">
               <a href="/visits">
-                Go back
+                <i class="fa-solid fa-arrow-left"></i>
               </a>
             </div>
 
-            <div>
+            <div  class="col-2">
               <a href="/delete_visit/<%= @the_visit.id %>">
-                Delete visit
+                <i class="fa-solid fa-trash"></i>
               </a>
             </div>
+
+            <div class="col-2">
+              <form action="/chat/<%= @the_visit.id %>">
+                <button class="btn btn-primary">
+                  AI Chat
+                </button>
+              </form>
+            </div>
+
           </div>
 
-          <dl>
-            <dt>
+          <dl class="row">
+            <dt class="col-sm-1">
               Date of visit
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.date_of_visit %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Patient
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.patient_id %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Description
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.description %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Medical specialty
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.medical_specialty %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Transcription
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.transcription %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Keywords
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.keywords %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Doctor
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= @the_visit.doctor_id %>
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Created at
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= time_ago_in_words(@the_visit.created_at) %> ago
             </dd>
 
-            <dt>
+            <dt class="col-sm-1">
               Updated at
             </dt>
-            <dd>
+            <dd class="col-sm-11">
               <%= time_ago_in_words(@the_visit.updated_at) %> ago
             </dd>
           </dl>
@@ -103,77 +112,83 @@
             Edit visit
           </h2>
 
-          <form action="/modify_visit/<%= @the_visit.id %>"  method="post" >
-            <div>
-              <label for="date_of_visit_box">
-                Date of visit
-              </label>
+          <form class="form container justify-content-center" action="/modify_visit/<%= @the_visit.id %>"  method="post" >
+            <div class="row mt-2">
+              <div class="form-group mb-2 col-3">
+                <label for="doctor_id_box">
+                  Doctor
+                </label>
 
-              <input type="date" id="date_of_visit_box" name="query_date_of_visit" value="<%= @the_visit.date_of_visit %>">
+                <select type="text" id="doctor_id_box" name="query_doctor_id">
+                  <% Doctor.all.order(:first_name, :last_name).each do |doctor| %>
+                    <option value="<%= doctor.id %>">
+                      <%= doctor.first_name + " " + doctor.last_name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+
+              <div class="form-group mb-2 col-3">
+                <label for="patient_id_box">Patient</label>
+
+                <select type="text" id="patient_id_box" name="query_patient_id">
+                  <% Patient.all.order(:first_name, :last_name).each do |patient| %>
+                    <option value="<%= patient.id %>">
+                      <%= patient.first_name + " " + patient.last_name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group mb-2 col-3">
+                <label for="description_box">
+                  Description
+                </label>
+
+                <textarea id="description_box" name="query_description" rows="3"></textarea>
+              </div>
+
+              <div class="form-group mb-2 col-3">
+                <label for="keywords_box">
+                  Keywords
+                </label>
+
+                <textarea id="keywords_box" name="query_keywords" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group mb-2">
+                <label for="transcription_box-6">
+                  Transcription
+                </label>
+                <br>
+                <textarea id="transcription_box" name="query_transcription" rows="3" cols="50"></textarea>
+              </div>
             </div>
 
-            <div>
-              <label for="patient_id_box">
-                Patient
-              </label>
+            <div class="row">
+              <div class="form-group mb-2 col-3">
+                <label for="medical_specialty_box">
+                  Medical specialty
+                </label>
 
-              <input type="text" id="patient_id_box" name="query_patient_id" value="<%= @the_visit.patient_id %>">
+                <input type="text" id="medical_specialty_box" name="query_medical_specialty">
+              </div>
+              <div class="form-group mb-2 col-3">
+                <label for="date_of_visit_box">
+                  Date of visit
+                </label>
+
+                <input type="date" id="date_of_visit_box" name="query_date_of_visit">
+              </div>
             </div>
 
-            <div>
-              <label for="description_box">
-                Description
-              </label>
-
-              <textarea id="description_box" name="query_description"><%= @the_visit.description %></textarea>
-            </div>
-
-            <div>
-              <label for="medical_specialty_box">
-                Medical specialty
-              </label>
-
-              <input type="text" id="medical_specialty_box" name="query_medical_specialty" value="<%= @the_visit.medical_specialty %>">
-            </div>
-
-            <div>
-              <label for="transcription_box">
-                Transcription
-              </label>
-
-              <textarea id="transcription_box" name="query_transcription"><%= @the_visit.transcription %></textarea>
-            </div>
-
-            <div>
-              <label for="keywords_box">
-                Keywords
-              </label>
-
-              <textarea id="keywords_box" name="query_keywords"><%= @the_visit.keywords %></textarea>
-            </div>
-
-            <div>
-              <label for="doctor_id_box">
-                Doctor
-              </label>
-
-              <input type="text" id="doctor_id_box" name="query_doctor_id" value="<%= @the_visit.doctor_id %>">
-            </div>
-
-            <button>
+            <button class="btn btn-primary mb-2">
               Update visit
             </button>
           </form>
         </div>
-
-        <div class="container">
-          <form action="/chat/<%= @the_visit.id %>">
-            <button class="btn btn-primary">
-              Chat
-            </button>
-          </form>
-        </div>
-
       </div>
     </div>
   </body>
