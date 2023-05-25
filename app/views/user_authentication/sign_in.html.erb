@@ -1,25 +1,31 @@
 <h1>Sign in</h1>
 
-  <div>
-    <form action="/user_verify_credentials" method="post">
-      <div class="mb-3">
-        <label for="email_box">Email</label>
-        <input id="email_box" name="query_email" placeholder="Enter your email..." type="text">
-      </div>
+<div>
+  <form action="/user_verify_credentials" method="post">
+    <div class="mb-3">
+      <label for="email_box">Email</label>
+      <input id="email_box" name="query_email" placeholder="Enter your email..." type="text">
+    </div>
 
-      <div class="mb-3">
-        <label for="password_box">Password</label>
-        <input id="password_box" name="query_password" placeholder="Enter your password..." type="password">
-      </div>
+    <div class="mb-3">
+      <label for="password_box">Password</label>
+      <input id="password_box" name="query_password" placeholder="Enter your password..." type="password">
+    </div>
 
-      <button type="submit" class="btn btn-primary">
-        Sign in
-      </button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-primary">
+      Sign in
+    </button>
+  </form>
+</div>
 
 <hr>
 
 <p>
   Or, <a href="/user_sign_up">Sign up</a> instead.
 </p>
+
+<footer>
+  <div class="footer fixed-bottom text-center bg-light">
+    <span> Ananth Prayaga, Made with <i class="fa-solid fa-heart" style="color: #ba2121;"></i></span>
+  </div>
+</footer>

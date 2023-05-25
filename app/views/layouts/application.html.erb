@@ -53,7 +53,7 @@
         </nav>
       <% end %>
     </div>
-    <div class="container">
+    <div class="container text-center my-1">
       <% unless notice.nil? %>
         <div class="alert alert-success d-inline-flex alert-dismissible fade show m-1" role="alert">
           <%= notice %>
@@ -68,10 +68,5 @@
       <%end%>
     </div>
     <%= yield %>
-    <footer>
-      <div class="fixed-bottom text-center bg-light p-2">
-        <span> Ananth Prayaga, Made with <i class="fa-solid fa-heart" style="color: #ba2121;"></i></span>
-      </div>
-    </footer>
   </body>
 </html>
